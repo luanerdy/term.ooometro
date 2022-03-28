@@ -16,8 +16,8 @@ const GlobalStyle = createGlobalStyle`
     --color-place: #d3ad69;
     --color-wrong: #312a2c;
     --color-wrong-keyboard: #504a4b;
-    --color-wrong-letter: #6E5C62;
-    --color-next: #615458;
+    --color-active: #6E5C62;
+    --color-undone: #615458;
     --color-white: #FAFAFF;
   }
 

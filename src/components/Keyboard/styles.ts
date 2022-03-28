@@ -33,6 +33,15 @@ const KeyboardStyles = styled.div`
 
       cursor: pointer;
 
+      transition: .3s;
+
+      &:active {
+        color: var(--color-secondary);
+        background-color: var(--color-white);
+
+        box-shadow: 0 0 10px rgba(255, 255, 255, .5)
+      }
+
       &.enter {
         flex-grow: 3;
       }
