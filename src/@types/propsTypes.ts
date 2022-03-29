@@ -1,6 +1,6 @@
 import { ReactChild } from "react";
 
-interface Letter {
+export interface Letter {
   state: string;
   letter: string;
 }

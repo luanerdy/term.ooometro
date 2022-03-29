@@ -2,10 +2,10 @@ import { TileProps } from "../../../@types/propsTypes";
 import { TileStyles } from "./styles";
 
 const Tile = (props: TileProps) => {
-  const { children } = props;
+  const { children, state } = props;
 
   return (
-    <TileStyles>
+    <TileStyles state={state}>
       <span className="letter">
         {children}
       </span>
