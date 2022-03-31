@@ -8,7 +8,7 @@ const Row = (props: RowProps) => {
   return (
     <RowStyles>
       {
-        line.word.map(letter => <Tile state={letter.state}>{letter.letter}</Tile>)
+        line.word.map((letter, idx) => <Tile key={idx} state={letter.state}>{letter.letter}</Tile>)
       }
     </RowStyles>
   );

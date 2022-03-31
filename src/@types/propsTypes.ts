@@ -18,3 +18,11 @@ export interface TileProps {
   children: ReactChild;
   state: string;
 };
+
+export interface TermoProps {
+  words: Letter[][];
+}
+
+export interface KeyboardProps {
+  setActiveLetter: (type: string, newLetter?: string) => void;
+}

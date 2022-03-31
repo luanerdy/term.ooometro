@@ -1,8 +1,10 @@
+import { PageStyles } from "../Main/styles";
+
 const NotFound = () => {
   return (
-    <div>
+    <PageStyles>
       Not Found
-    </div>
+    </PageStyles>
   );
 };
 
