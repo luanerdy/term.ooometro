@@ -30,6 +30,7 @@ const TileStyles = styled.div<TileStylesProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   width: calc((min(50vh, 102vw) - (5 * 2px)) / 6);
   aspect-ratio: 1;
@@ -49,4 +50,21 @@ const TileStyles = styled.div<TileStylesProps>`
   }
 `;
 
-export { TileStyles };
+const ChangeStateStyles = styled.div`
+  position: absolute;
+  z-index: 1;
+
+  .tile {
+    position: relative;
+
+    &:first-child {
+      bottom: calc((calc((min(50vh, 102vw) - (5 * 2px)) / 6) / 2) + 2px);
+    }
+
+    &:last-child {
+      top: calc((calc((min(50vh, 102vw) - (5 * 2px)) / 6) / 2) + 2px);
+    }
+  }
+`;
+
+export { TileStyles, ChangeStateStyles };

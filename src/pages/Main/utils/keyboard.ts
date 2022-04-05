@@ -79,7 +79,7 @@ const enterWord = async (words: Letter[][]) => {
   const response = await getFullWord({ first: myWord[0], second: myWord[1], third: myWord[2], fourth: myWord[3], fifth: myWord[4] });
   if(!response) valid = false;
 
-  return valid === true ? [...words.map(word => word.map(letter => ({ ...letter, state: 'wrong' }))), initWord] : words;
+  return valid === true ? [...words.map((word, idx) => idx === words.length - 1 ? word.map(letter => ({ ...letter, state: 'wrong' })) : word), initWord] : words;
 };
 
 const eraseLetter = (words: Letter[][]) => {

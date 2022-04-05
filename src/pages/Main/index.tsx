@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Header } from "../../components/Header";
 import { Keyboard } from "../../components/Keyboard";
 import { Termo } from "../../components/Termo";
+import { WordsContext } from "../../contexts/wordsProvider";
 import { PageStyles } from "./styles";
 import { handleSetActiveLetter, initWord } from "./utils/keyboard";
 
 const Main = () => {
-  const [words, setWords] = useState([initWord]);
 
-  const handleSetNewWord = (row: number, col: number) => {
-
-  };
+  const { words, setWords } = useContext(WordsContext);
 
   const keyboardWrite = async (type: string, newLetter: string = '') => {
     setWords(await handleSetActiveLetter(words, type, newLetter));
@@ -19,7 +17,7 @@ const Main = () => {
   return (
     <PageStyles>
       <Header />
-      <Termo words={words} />
+      <Termo />
       <Keyboard setActiveLetter={keyboardWrite} />
     </PageStyles>
   );

@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { TermoProps, TileLineProps } from "../../@types/propsTypes";
+import { useContext, useEffect, useState } from "react";
+import { TileLineProps } from "../../@types/propsTypes";
+import { WordsContext } from "../../contexts/wordsProvider";
 import { Row } from "../general/Row";
 import { TermoStyles } from "./styles";
 import { getTiles } from "./utils";
 
-const Termo = (props: TermoProps) => {
-  const { words } = props;
+const Termo = () => {
+  const { words } = useContext(WordsContext);
   const [tiles, setTiles] = useState(getTiles(6, words));
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const Termo = (props: TermoProps) => {
     <TermoStyles>
       {
         tiles.map((line: TileLineProps, idx) => (
-          <Row key={idx} line={line} />
+          <Row key={idx} row={idx} line={line} />
         ))
       }
     </TermoStyles>
