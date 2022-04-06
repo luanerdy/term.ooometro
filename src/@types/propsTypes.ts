@@ -40,3 +40,8 @@ export interface KeyboardProps {
 export interface WordsProviderProps {
   children: ReactChild[];
 }
+
+export interface ButtonResultProps {
+  showResults: boolean;
+  setShowResults: Dispatch<SetStateAction<boolean>>;
+}
