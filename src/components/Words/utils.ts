@@ -43,7 +43,7 @@ export const getParams = (words: Letter[][]) => {
     }
 
     if(state === 'place') {
-      params.maybes += letra;
+      if(!params.maybes?.includes(letra)) params.maybes += letra;
 
       switch(index) {
         case 0:

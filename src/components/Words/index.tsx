@@ -11,6 +11,7 @@ const Words = () => {
 
   const handleGetSuggestions = () => {
     const params = getParams(words);
+    console.log(params);
 
     const setNewSuggestions = async () => {
       const newSuggestions = await getWords(params);
