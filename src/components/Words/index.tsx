@@ -1,12 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { WordsParams } from "../../@types/paramsTypes";
+import { WordsContext } from "../../contexts/wordsProvider";
+import { getWords } from "../../services/wordsApi";
 import { WordsStyles } from "./styles";
+import { getParams } from "./utils";
 
 const Words = () => {
-  const [suggestions, setSuggestions] = useState(['teste', 'teste', 'teste', 'teste', 'teste']);
+  const { words } = useContext(WordsContext);
+  const [suggestions, setSuggestions] = useState([]);
 
-  useEffect(() => {
+  const handleGetSuggestions = () => {
+    const params = getParams(words);
 
-  }, []);
+    const setNewSuggestions = async () => {
+      const newSuggestions = await getWords(params);
+      setSuggestions(newSuggestions);
+    }
+
+    setNewSuggestions();
+  }
+
+  useEffect(handleGetSuggestions, []);
 
   return (
     <WordsStyles>
