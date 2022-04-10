@@ -1,38 +1,31 @@
-import { useContext, useState } from "react";
-import { ButtonResults } from "../../components/ButtonResults";
+import { useEffect, useState } from "react";
+import { Board } from "../../@types/propsTypes";
 import { Header } from "../../components/Header";
-import { Keyboard } from "../../components/Keyboard";
-import { Termo } from "../../components/Termo";
-import { Words } from "../../components/Words";
-import { WordsContext } from "../../contexts/wordsProvider";
+import { Boards } from "./components/Boards";
 import { PageStyles } from "./styles";
-import { handleSetActiveLetter } from "./utils/keyboard";
 
 const Main = () => {
-  const { words, setWords } = useContext(WordsContext);
-  const [showResults, setShowResults] = useState<boolean>(false);
+  const [board, setBoard] = useState<Board>('termo');
+  const [size, setSize] = useState(6);
 
-  const keyboardWrite = async (type: string, newLetter: string = "") => {
-    setWords(await handleSetActiveLetter(words, type, newLetter));
-  };
+  useEffect(() => {
+    switch (board) {
+      case 'dueto':
+        setSize(7);
+        break;
+      case 'quarteto':
+        setSize(9);
+        break;
+      default:
+        setSize(6);
+        break;
+    }
+  }, [board]);
 
   return (
     <PageStyles>
-      <Header />
-      {words.length > 1 && (
-        <ButtonResults
-          showResults={showResults}
-          setShowResults={setShowResults}
-        />
-      )}
-      {showResults ? (
-        <Words />
-      ) : (
-        <>
-          <Termo />
-          <Keyboard setActiveLetter={keyboardWrite} />
-        </>
-      )}
+      <Header board={board} setBoard={setBoard} />
+      <Boards size={size} />
     </PageStyles>
   );
 };

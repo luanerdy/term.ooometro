@@ -1,6 +1,7 @@
+import { HeaderProps } from "../../@types/propsTypes";
 import { HeaderStyles } from "./styles";
 
-const Header = () => {
+const Header = (props: HeaderProps) => {
   return (
     <HeaderStyles>
       <h1>

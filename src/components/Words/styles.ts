@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
-const WordsStyles = styled.div`
+interface WordsStylesProps {
+  size: number;
+}
+
+const WordsStyles = styled.div<WordsStylesProps>`
   display: flex;
   flex-flow: column nowrap;
 
   height: 50vh;
   max-height: 102vw;
   max-width: calc(100% - 20px);
-  aspect-ratio: 5/6;
+  aspect-ratio: 5/${props => props.size};
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   margin: auto 0 calc(25vh + 20px);
 

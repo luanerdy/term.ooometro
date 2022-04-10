@@ -14,7 +14,6 @@ const Keyboard = (props: KeyboardProps) => {
   useEffect(() => {
     const handleKeyPress = (event: any) => {
       const key = event.code.toLowerCase().replace('key', '');
-      console.log(key);
 
       const validKeys: string[] = [];
       keyboard.forEach(line => line.forEach(letter => validKeys.push(typeof letter === 'string' ? letter : letter.type)));

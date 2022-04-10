@@ -1,3 +1,4 @@
+import { ReactChild } from "react";
 import styled, { css } from "styled-components";
 
 const switchColor = (type: string = '') => {
@@ -17,6 +18,12 @@ const switchColor = (type: string = '') => {
 
 interface TileStylesProps {
   state: string;
+  size: number;
+};
+
+interface ChangeTileStylesProps {
+  children?: ReactChild;
+  size: number;
 };
 
   const tileState = css<TileStylesProps>`
@@ -32,7 +39,7 @@ const TileStyles = styled.div<TileStylesProps>`
   align-items: center;
   position: relative;
 
-  width: calc((min(50vh, 102vw) - (5 * 2px)) / 6);
+  width: calc((min(50vh, 102vw) - ((${props => props.size} - 1) * 2px)) / ${props => props.size});
   aspect-ratio: 1;
 
   margin: 2px;
@@ -50,7 +57,7 @@ const TileStyles = styled.div<TileStylesProps>`
   }
 `;
 
-const ChangeStateStyles = styled.div`
+const ChangeStateStyles = styled.div<ChangeTileStylesProps>`
   position: absolute;
   z-index: 1;
 
@@ -58,11 +65,11 @@ const ChangeStateStyles = styled.div`
     position: relative;
 
     &:first-child {
-      bottom: calc((calc((min(50vh, 102vw) - (5 * 2px)) / 6) / 2) + 2px);
+      bottom: calc((calc((min(50vh, 102vw) - ((${props => props.size} - 1) * 2px)) / ${props => props.size}) / 2) + 2px);
     }
 
     &:last-child {
-      top: calc((calc((min(50vh, 102vw) - (5 * 2px)) / 6) / 2) + 2px);
+      top: calc((calc((min(50vh, 102vw) - ((${props => props.size} - 1) * 2px)) / ${props => props.size}) / 2) + 2px);
     }
   }
 `;

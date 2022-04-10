@@ -10,15 +10,33 @@ export interface TileLineProps {
   word: Letter[];
 };
 
+type HandleChangeTileState = (row: number, col: number, state: string) => void;
+
 export interface RowProps {
   line: TileLineProps;
+  size: number;
   row: number;
+  handleChangeTileState: HandleChangeTileState;
 }
 
-type HandleChangeTileState = (row: number, col: number, state: string) => void;
+export interface TermoProps {
+  words: Letter[][];
+  size: number;
+  handleChangeTileState: HandleChangeTileState;
+}
+
+export interface BoardProps {
+  size: number;
+}
+
+export interface WordsProps {
+  words: Letter[][];
+  size: number;
+}
 
 export interface TileProps {
   children: ReactChild;
+  size: number;
   state: string;
   handleChangeTileState: HandleChangeTileState;
   pair: {
@@ -37,8 +55,12 @@ export interface KeyboardProps {
   setActiveLetter: (type: string, newLetter?: string) => void;
 }
 
-export interface WordsProviderProps {
-  children: ReactChild[];
+
+export type Board = 'termo' | 'dueto' | 'quarteto';
+
+export interface HeaderProps {
+  board: Board;
+  setBoard: Dispatch<SetStateAction<Board>>
 }
 
 export interface ButtonResultProps {
