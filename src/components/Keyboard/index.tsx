@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { KeyboardProps } from "../../@types/propsTypes";
 import { KeyboardStyles } from "./styles";
 
@@ -9,6 +10,30 @@ const Keyboard = (props: KeyboardProps) => {
     ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', {text: <>&#9003;</>, type: 'backspace'}],
     ['z', 'x', 'c', 'v', 'b', 'n', 'm', {text: 'enter', type: 'enter'}]
   ];
+
+  useEffect(() => {
+    const handleKeyPress = (event: any) => {
+      const key = event.code.toLowerCase().replace('key', '');
+      console.log(key);
+
+      const validKeys: string[] = [];
+      keyboard.forEach(line => line.forEach(letter => validKeys.push(typeof letter === 'string' ? letter : letter.type)));
+      const isValidKey = validKeys.includes(key);
+
+      if(!isValidKey) return;
+
+      if(key === 'backspace') return setActiveLetter('erase');
+      if(key === 'enter') return setActiveLetter('enter');
+
+      setActiveLetter('write', key);
+    };
+
+    window.addEventListener('keyup', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keyup', handleKeyPress);
+    }
+  }, [setActiveLetter]);
 
   return (
     <KeyboardStyles>
