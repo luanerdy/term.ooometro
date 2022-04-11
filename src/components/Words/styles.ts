@@ -6,22 +6,21 @@ interface WordsStylesProps {
 
 const WordsStyles = styled.div<WordsStylesProps>`
   display: flex;
+  /* justify-content: center; */
+  align-items: center;
   flex-flow: column nowrap;
 
-  height: 50vh;
-  max-height: 102vw;
-  max-width: calc(100% - 20px);
   aspect-ratio: 5/${props => props.size};
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  margin: auto 0 calc(25vh + 20px);
 
   text-align: left;
 
   .words {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: ${props => props.size === 6 ? '1fr 1fr 1fr 1fr' : '1fr 1fr'};
+    grid-gap: 5px 15px;
+
+    max-height: ${props => props.size === 9 ? '25vh' : '40vh'};
+    overflow-y: scroll;
 
     margin: 10px 0 0;
   }

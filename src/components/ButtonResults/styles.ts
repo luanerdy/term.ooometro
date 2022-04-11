@@ -5,7 +5,7 @@ const ButtonResultStyles = styled.button`
   max-width: 300px;
   aspect-ratio: 5 / 1;
 
-  margin: 20px auto;
+  margin: 0 auto 20px;
 
   border-radius: 20px;
   font-size: 1.4em;

@@ -10,12 +10,9 @@ const TermoStyles = styled.div<TermoStylesProps>`
   align-items: center;
   flex-flow: column nowrap;
 
-  height: 50vh;
-  max-height: 102vw;
-  max-width: calc(100% - 20px);
   aspect-ratio: 5/${props => props.size};
 
-  margin: auto 0 calc(25vh + 20px);
+  /* margin: auto 0 calc(25vh + 20px); */
 `;
 
 export { TermoStyles };

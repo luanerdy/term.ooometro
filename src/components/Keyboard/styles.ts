@@ -4,12 +4,14 @@ const KeyboardStyles = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  width: calc(100% - 20px);
+  background-color: var(--color-primary);
+
+  width: 100%;
   height: 25vh;
 
-  margin: 0 0 10px;
+  padding: 10px;
 
-  position: absolute;
+  position: fixed;
   bottom: 0;
 
   .line {

@@ -28,8 +28,8 @@ interface ChangeTileStylesProps {
 
   const tileState = css<TileStylesProps>`
     background-color: ${props => switchColor(props.state)};
-    border: ${props => ['active', 'todo'].includes(props.state) ? '0.25em solid var(--color-secondary)' : 'none'};
-    border-bottom: ${props => props.state === 'active' ? '0.6em solid var(--color-secondary)' : ''};
+    border: ${props => ['active', 'todo'].includes(props.state) ? (props.size === 6 ? '0.25em solid var(--color-secondary)' : '0.125em solid var(--color-secondary)') : 'none'};
+    border-bottom: ${props => props.state === 'active' ? (props.size === 6 ? '0.6em solid var(--color-secondary)' : '0.3em solid var(--color-secondary)') : ''};
 
   `;
 
@@ -39,7 +39,7 @@ const TileStyles = styled.div<TileStylesProps>`
   align-items: center;
   position: relative;
 
-  width: calc((min(50vh, 102vw) - ((${props => props.size} - 1) * 2px)) / ${props => props.size});
+  width: calc((min(${props => props.size === 6 ? '50vh' : '25vh'}, ${props => props.size === 6 ? '102vw' : '51vw'}) - ((${props => props.size === 6 ? 6 : 7} - 1) * 2px)) / ${props => props.size === 6 ? 6 : 7});
   aspect-ratio: 1;
 
   margin: 2px;
@@ -52,7 +52,7 @@ const TileStyles = styled.div<TileStylesProps>`
   .letter {
     text-transform: uppercase;
 
-    font-size: 2em;
+    font-size: ${props => props.size === 6 ? '2em' : '1em'};
     font-weight: 600;
   }
 `;
@@ -65,11 +65,11 @@ const ChangeStateStyles = styled.div<ChangeTileStylesProps>`
     position: relative;
 
     &:first-child {
-      bottom: calc((calc((min(50vh, 102vw) - ((${props => props.size} - 1) * 2px)) / ${props => props.size}) / 2) + 2px);
+      bottom: calc((calc((min(${props => props.size === 6 ? '50vh' : '25vh'}, ${props => props.size === 6 ? '102vw' : '51vw'}) - ((${props => props.size === 6 ? 6 : 7} - 1) * 2px)) / ${props => props.size === 6 ? 6 : 7}) / 2) + 2px);
     }
 
     &:last-child {
-      top: calc((calc((min(50vh, 102vw) - ((${props => props.size} - 1) * 2px)) / ${props => props.size}) / 2) + 2px);
+      top: calc((calc((min(${props => props.size === 6 ? '50vh' : '25vh'}, ${props => props.size === 6 ? '102vw' : '51vw'}) - ((${props => props.size === 6 ? 6 : 7} - 1) * 2px)) / ${props => props.size === 6 ? 6 : 7}) / 2) + 2px);
     }
   }
 `;

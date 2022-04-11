@@ -20,12 +20,15 @@ export interface RowProps {
 }
 
 export interface TermoProps {
-  words: Letter[][];
+  keyWrite: [string, string];
   size: number;
-  handleChangeTileState: HandleChangeTileState;
+  showResults: boolean;
+  showButton?: boolean;
+  setShowButton?: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface BoardProps {
+  board: Board;
   size: number;
 }
 
@@ -60,7 +63,8 @@ export type Board = 'termo' | 'dueto' | 'quarteto';
 
 export interface HeaderProps {
   board: Board;
-  setBoard: Dispatch<SetStateAction<Board>>
+  setBoard: Dispatch<SetStateAction<Board>>;
+  setSize: Dispatch<SetStateAction<number>>
 }
 
 export interface ButtonResultProps {
