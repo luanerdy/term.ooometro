@@ -58,7 +58,7 @@ const Termo = (props: TermoProps) => {
         <TermoStyles size={size}>
           {tiles.map((line: TileLineProps, idx) =>
             (loading && line.word[0].state === 'todo') ? (
-              <ThreeDots color="#00BFFF" height={80} width={80} />
+              <ThreeDots color="var(--color-wrong)" height={50} width={80} />
             ) : (
               <Row
                 key={idx}
