@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Letter, TermoProps, TileLineProps } from "../../@types/propsTypes";
+import { ThreeDots } from  'react-loader-spinner';
 import {
   handleSetActiveLetter,
   initWord,
@@ -13,6 +14,7 @@ const Termo = (props: TermoProps) => {
   const { keyWrite, size, showResults } = props;
   const [words, setWords] = useState<Letter[][]>([initWord]);
   const [tiles, setTiles] = useState(getTiles(size, words));
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (keyWrite[0] === "stop") return;
@@ -23,13 +25,16 @@ const Termo = (props: TermoProps) => {
     const showButton = props.showButton;
     const setShowButton = props.setShowButton || (() => null);
 
-    if(showButton !== undefined) {
+    if (showButton !== undefined) {
       setShowButton(words.length > 1);
     }
-  })
+  });
 
   const setActiveLett = async () => {
-    setWords(await handleSetActiveLetter(words, ...keyWrite));
+    keyWrite[0] === "enter" && setLoading(true);
+    const newAtiveLetters = await handleSetActiveLetter(words, ...keyWrite);
+    setLoading(false);
+    setWords(newAtiveLetters);
   };
 
   const handleChangeTileState = (row: number, col: number, state: string) => {
@@ -51,15 +56,19 @@ const Termo = (props: TermoProps) => {
         <Words size={size} words={words} />
       ) : (
         <TermoStyles size={size}>
-          {tiles.map((line: TileLineProps, idx) => (
-            <Row
-              key={idx}
-              size={size}
-              handleChangeTileState={handleChangeTileState}
-              row={idx}
-              line={line}
-            />
-          ))}
+          {tiles.map((line: TileLineProps, idx) =>
+            (loading && line.word[0].state === 'todo') ? (
+              <ThreeDots color="#00BFFF" height={80} width={80} />
+            ) : (
+              <Row
+                key={idx}
+                size={size}
+                handleChangeTileState={handleChangeTileState}
+                row={idx}
+                line={line}
+              />
+            )
+          )}
         </TermoStyles>
       )}
     </>
